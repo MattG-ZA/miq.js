@@ -11,21 +11,22 @@
     }
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const reversed = 'ZYXWVUTSRQPONMLKJIHGFEDCBA';
 
     // Prototype holds methods
     miq.prototype = {
         atbash: function(message) {
-            let encrypyedMessage = '';
+            const reversedAlphabet = alphabet.split("").reverse().join("");;
+
+            let cipherMessage = '';
 
            for (let i = 0; i < message.length; i++) {
-               let indexOfLetter = alphabet.indexOf(message[i].toUpperCase());
-               let oppositeLetter = reversed[indexOfLetter];
+               let indexOfChar = alphabet.indexOf(message[i].toUpperCase());
+               let cipherChar = indexOfChar > -1 ? reversedAlphabet[indexOfChar] : message[i].toUpperCase();
 
-               encrypyedMessage += oppositeLetter;
+               cipherMessage += cipherChar;
            }
 
-           return encrypyedMessage;
+           return cipherMessage;
         }
     };
 
