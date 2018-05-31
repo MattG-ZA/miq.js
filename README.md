@@ -5,3 +5,4 @@ JavaScript Cryptography Library
 
 - Atbash
 - ROT13
+- Caesar

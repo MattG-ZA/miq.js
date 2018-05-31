@@ -1,12 +1,12 @@
-;(function(global) {
+; (function (global) {
 
     // Create a 'new' miq object
-    const miq = function() {
+    const miq = function () {
         return new miq.init();
     }
 
     // The actual object is created here
-    miq.init = function() {
+    miq.init = function () {
         const self = this;
     }
 
@@ -15,29 +15,21 @@
 
     // Prototype holds methods
     miq.prototype = {
-        atbash: function(message) {
-            let encryptedMessage = '';
+        atbash: function (message) {
+            let encryptedMessage = replaceCharacters(message, reversedAlphabet);
 
-           for (let i = 0; i < message.length; i++) {
-               let indexOfChar = alphabet.indexOf(message[i].toUpperCase());
-               let encryptedChar = indexOfChar > -1 ? reversedAlphabet[indexOfChar] : message[i].toUpperCase();
-
-               encryptedMessage += encryptedChar;
-           }
-
-           return encryptedMessage;
+            return encryptedMessage;
         },
-        rot13: function(message) {
+        rot13: function (message) {
             let shiftedAlphabet = shiftAlphabet(13);
-            let encryptedMessage = '';
+            let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
 
-            for (let i = 0; i < message.length; i++) {
-                let indexOfChar = alphabet.indexOf(message[i].toUpperCase());
-                let encryptedChar = indexOfChar > -1 ? shiftedAlphabet[indexOfChar] : message[i].toUpperCase();
- 
-                encryptedMessage += encryptedChar;
-            }
- 
+            return encryptedMessage;
+        },
+        caesar: function (message, number) {
+            let shiftedAlphabet = shiftAlphabet(number);
+            let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
+
             return encryptedMessage;
         }
     };
@@ -53,6 +45,19 @@
         }
 
         return shiftedAlphabet;
+    };
+
+    function replaceCharacters(message, replaceAlphabet) {
+        let replacedMessage = '';
+
+        for (let i = 0; i < message.length; i++) {
+            let indexOfChar = alphabet.indexOf(message[i].toUpperCase());
+            let replaceChar = indexOfChar > -1 ? replaceAlphabet[indexOfChar] : message[i].toUpperCase();
+
+            replacedMessage += replaceChar;
+        }
+
+        return replacedMessage;
     };
 
     miq.init.prototype = miq.prototype;
