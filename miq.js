@@ -49,6 +49,49 @@
             }
 
             return encryptedMessage;
+        },
+        railFence: (message, num) => {
+            let encryptedMessage = '';
+
+            if (num === 1) {
+                encryptedMessage = message;
+            }
+            else {
+                let rails = {};
+                let rowCounter = 1;
+                let goDown = true;
+
+                for (let column = 0; column < message.length; column++) {
+                    if (!rails[rowCounter]) {
+                        rails[rowCounter] = '';
+                    }
+
+                    rails[rowCounter] += message[column];
+
+                    if (goDown) {
+                        rowCounter++;
+
+                        if (rowCounter + 1 > num) {
+                            goDown = !goDown;
+                        }
+                    }
+                    else {
+                        rowCounter--;
+
+                        if (rowCounter - 1 < 1) {
+                            goDown = !goDown;
+                        }
+                    }
+                }
+
+                for (let row in rails) {
+                    if (rails.hasOwnProperty(row)) {
+                        encryptedMessage += rails[row];
+                    }
+                }
+            }
+
+            return encryptedMessage;
         }
     };
 
