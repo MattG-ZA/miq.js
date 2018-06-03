@@ -15,31 +15,49 @@
 
     // Prototype holds methods
     miq.prototype = {
-        atbash: function (message) {
+        atbash: (message) => {
             let encryptedMessage = replaceCharacters(message, reversedAlphabet);
 
             return encryptedMessage;
         },
-        rot13: function (message) {
+        rot13: (message) => {
             let shiftedAlphabet = shiftAlphabet(13);
             let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
 
             return encryptedMessage;
         },
-        caesar: function (message, number) {
-            let shiftedAlphabet = shiftAlphabet(number);
+        caesar: (message, num) => {
+            let shiftedAlphabet = shiftAlphabet(num);
             let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
+
+            return encryptedMessage;
+        },
+        affine: (message, num1, num2) => {
+            let validParams = num2 <= alphabet.length - 1 && num2 > 0 && 26 % num1 > 0;
+            let encryptedMessage = '';
+
+            if (validParams) {
+                for (let i = 0; i < message.length; i++) {
+                    let indexOfChar = alphabet.indexOf(message[i].toUpperCase());
+                    let encryptedChar = indexOfChar > -1 ? alphabet[(num1 * indexOfChar + num2) % alphabet.length] : message[i].toUpperCase();
+
+                    encryptedMessage += encryptedChar;
+                }
+            }
+            else {
+                encryptedMessage = 'Error: Invalid number parameters.';
+            }
 
             return encryptedMessage;
         }
     };
 
     // Utility functions
-    function shiftAlphabet(number) {
+    const shiftAlphabet = (number) => {
         let shiftedAlphabet = '';
 
         for (let i = 0; i < alphabet.length; i++) {
-            let shiftedChar = alphabet[(i + number) % 26];
+            let shiftedChar = alphabet[(i + number) % alphabet.length];
 
             shiftedAlphabet += shiftedChar;
         }
@@ -47,7 +65,7 @@
         return shiftedAlphabet;
     };
 
-    function replaceCharacters(message, replaceAlphabet) {
+    const replaceCharacters = (message, replaceAlphabet) => {
         let replacedMessage = '';
 
         for (let i = 0; i < message.length; i++) {
