@@ -92,6 +92,28 @@
             }
 
             return encryptedMessage;
+        },
+        polybiusSquare: (message, key, cipherText) => {
+            let validParams = key.length === 25 && cipherText.length === 5;
+            let encryptedMessage = '';
+
+            if (validParams) {
+                for (let i = 0; i < message.length; i++) {
+                    let currentChar = message[i] === 'j' ? 'i' : message[i];
+
+                    let rowChar = cipherText[Math.floor(key.indexOf(currentChar) / 5)];
+                    let columnChar = cipherText[key.indexOf(currentChar) % 5];
+
+                    if (rowChar !== undefined && columnChar !== undefined) {
+                        encryptedMessage += rowChar += columnChar;
+                    }
+                }
+            }
+            else {
+                encryptedMessage = 'Error: Invalid key or cipher text length.';
+            }
+
+            return encryptedMessage;
         }
     };
 
