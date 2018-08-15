@@ -11,29 +11,34 @@
     }
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const reversedAlphabet = 'ZYXWVUTSRQPONMLKJIHGFEDCBA';
 
     // Prototype holds methods
     miq.prototype = {
         atbash: (message) => {
+            const reversedAlphabet = alphabet.split('').reverse().join('');
             let encryptedMessage = replaceCharacters(message, reversedAlphabet);
 
             return encryptedMessage;
         },
         rot13: (message) => {
-            let shiftedAlphabet = shiftAlphabet(13);
+            const shiftedAlphabet = shiftAlphabet(13);
             let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
 
             return encryptedMessage;
         },
         caesar: (message, num) => {
-            let shiftedAlphabet = shiftAlphabet(num);
+            const shiftedAlphabet = shiftAlphabet(num);
             let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
 
             return encryptedMessage;
         },
+        simpleSubstitution: (message, cipherText) => {
+            let encryptedMessage = replaceCharacters(message, cipherText);
+
+            return encryptedMessage;
+        },
         affine: (message, num1, num2) => {
-            let validParams = num2 <= alphabet.length - 1 && num2 > 0 && 26 % num1 > 0;
+            let validParams = num2 <= alphabet.length - 1 && num2 > 0 && alphabet.length % num1 > 0;
             let encryptedMessage = '';
 
             if (validParams) {
