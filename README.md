@@ -9,3 +9,4 @@ JavaScript Cryptography Library
 - Polybius Square
 - Rail-Fence
 - ROT13
+- Simple Substitution
