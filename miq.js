@@ -167,7 +167,7 @@
     // Utility functions
     const shiftAlphabet = (number) => {
         let shiftedAlphabet = '';
-
+        
         for (let i = 0; i < alphabet.length; i++) {
             let shiftedChar = alphabet[(i + number) % alphabet.length];
 
