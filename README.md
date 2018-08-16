@@ -6,6 +6,7 @@ JavaScript Cryptography Library
 - Affine
 - Atbash
 - Caesar
+- Columnar Transposition
 - Polybius Square
 - Rail-Fence
 - ROT13
