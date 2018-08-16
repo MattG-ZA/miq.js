@@ -14,29 +14,6 @@
 
     // Prototype holds methods
     miq.prototype = {
-        atbash: (message) => {
-            const reversedAlphabet = alphabet.split('').reverse().join('');
-            let encryptedMessage = replaceCharacters(message, reversedAlphabet);
-
-            return encryptedMessage;
-        },
-        rot13: (message) => {
-            const shiftedAlphabet = shiftAlphabet(13);
-            let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
-
-            return encryptedMessage;
-        },
-        caesar: (message, num) => {
-            const shiftedAlphabet = shiftAlphabet(num);
-            let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
-
-            return encryptedMessage;
-        },
-        simpleSubstitution: (message, cipherText) => {
-            let encryptedMessage = replaceCharacters(message, cipherText);
-
-            return encryptedMessage;
-        },
         affine: (message, num1, num2) => {
             let validParams = num2 <= alphabet.length - 1 && num2 > 0 && alphabet.length % num1 > 0;
             let encryptedMessage = '';
@@ -51,6 +28,82 @@
             }
             else {
                 encryptedMessage = 'Error: Invalid number parameters.';
+            }
+
+            return encryptedMessage;
+        },
+        atbash: (message) => {
+            const reversedAlphabet = alphabet.split('').reverse().join('');
+            let encryptedMessage = replaceCharacters(message, reversedAlphabet);
+
+            return encryptedMessage;
+        },
+        caesar: (message, num) => {
+            const shiftedAlphabet = shiftAlphabet(num);
+            let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
+
+            return encryptedMessage;
+        },
+        columnarTransposition: (message, keyWord, padChar) => {
+            let encryptedMessage = '';
+
+            let columns = {};
+            let rows = [];
+
+            let rowStart = 0;
+            let rowEnd = keyWord.length;
+
+            // Build the rows of the grid
+            for (let i = 0; i < Math.ceil(message.length / keyWord.length); i++) {
+                rows[i] = message.substring(rowStart, rowEnd);
+
+                rowStart += keyWord.length;
+                rowEnd += keyWord.length;
+
+                // Add padding
+                if (rows[i].length < keyWord.length) {
+                    rows[i] += padChar.repeat(keyWord.length - rows[i].length);
+                }
+            }
+
+            // Build the columns of the grid
+            for (let i = 0; i < keyWord.length; i++) {
+                // Add the index to the char in case of duplicate chars in keyWord
+                columns[keyWord[i] + i] = '';
+
+                rows.forEach(row => {
+                    columns[keyWord[i] + i] += row[i];
+                })
+            }
+
+            // Create keyWord containing indices, and sort chars alphabetically
+            let sortedKeyWord = keyWord.split('').map((char, index) => { return char + index; }).sort();
+
+            // Create encryptedMessage from alphabetically sorted columns
+            sortedKeyWord.forEach(char => {
+                encryptedMessage += columns[char];
+            })
+
+            return encryptedMessage;
+        },
+        polybiusSquare: (message, key, cipherText) => {
+            let validParams = key.length === 25 && cipherText.length === 5;
+            let encryptedMessage = '';
+
+            if (validParams) {
+                for (let i = 0; i < message.length; i++) {
+                    let currentChar = message[i] === 'j' ? 'i' : message[i];
+
+                    let rowChar = cipherText[Math.floor(key.indexOf(currentChar) / 5)];
+                    let columnChar = cipherText[key.indexOf(currentChar) % 5];
+
+                    if (rowChar !== undefined && columnChar !== undefined) {
+                        encryptedMessage += rowChar += columnChar;
+                    }
+                }
+            }
+            else {
+                encryptedMessage = 'Error: Invalid key or cipher text length.';
             }
 
             return encryptedMessage;
@@ -98,25 +151,14 @@
 
             return encryptedMessage;
         },
-        polybiusSquare: (message, key, cipherText) => {
-            let validParams = key.length === 25 && cipherText.length === 5;
-            let encryptedMessage = '';
+        rot13: (message) => {
+            const shiftedAlphabet = shiftAlphabet(13);
+            let encryptedMessage = replaceCharacters(message, shiftedAlphabet);
 
-            if (validParams) {
-                for (let i = 0; i < message.length; i++) {
-                    let currentChar = message[i] === 'j' ? 'i' : message[i];
-
-                    let rowChar = cipherText[Math.floor(key.indexOf(currentChar) / 5)];
-                    let columnChar = cipherText[key.indexOf(currentChar) % 5];
-
-                    if (rowChar !== undefined && columnChar !== undefined) {
-                        encryptedMessage += rowChar += columnChar;
-                    }
-                }
-            }
-            else {
-                encryptedMessage = 'Error: Invalid key or cipher text length.';
-            }
+            return encryptedMessage;
+        },
+        simpleSubstitution: (message, cipherText) => {
+            let encryptedMessage = replaceCharacters(message, cipherText);
 
             return encryptedMessage;
         }
