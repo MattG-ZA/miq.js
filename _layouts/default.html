@@ -8,11 +8,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!--   <link rel="stylesheet" href="../assets/css/templateStyle.css"> -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/templateStyle.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/templateStyle.css">
 <!--   <link rel="stylesheet" href="../assets/css/customStyle.css"> -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/customStyle.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/customStyle.css">
 <!--   <link rel="icon" type="image/png" href="../assets/media/icon.png" /> -->
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/media/icon.png" />
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/media/icon.png" />
 
   <title>miq.js</title>
 </head>
@@ -36,13 +36,15 @@
       <p class="atbash-bottom" id="atbash_alpha_reversed">
         ZYXWVUTSRQPONMLKJIHGFEDCBA
       </p>
+      <span class="legend-container">
+        <span class="message-legend"></span>
+        <span class="message-encrypted-legend"></span>
+      </span>
       <div class="message-container">
         <textarea id="atbash_message" class="message" placeholder="Enter message to encrypt..."></textarea>
         <textarea id="atbash_message_encrypted" class="message-encrypted" placeholder="Encrypted message..." readonly></textarea>
-        <div>
-            <button type="button" onclick="encryptMessage('atbash')">Encrypt</button>
-        </div>
       </div>
+      <button type="button" onclick="encryptMessage('atbash')">Encrypt</button>
     </span>
 
     <footer class="site-footer">

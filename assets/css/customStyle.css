@@ -1,14 +1,18 @@
 div.message-container{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
 }
 textarea.message{
     min-width: 49%;
     resize: none;
+    margin-right: 15px;
+    flex: 1 1;
 }
 textarea.message-encrypted{
     min-width: 49%;
     resize: none;
-    float: right;
+    flex: 1 1;
 }
 p.atbash-top{
     border-top: 1px solid lightgrey; 
@@ -25,4 +29,18 @@ p.atbash-bottom{
     font-family: monospace;
     text-align: center;
     margin-bottom: 17px;
+}
+span.legend-container{
+    display: flex; 
+    justify-content: space-between;
+}
+span.message-legend{
+    border-bottom: 2px solid #1e6bb8; 
+    width: 5%; 
+    margin-bottom: 5px;
+}
+span.message-encrypted-legend{
+    border-bottom: 2px solid #ef4e7b; 
+    width: 5%; 
+    margin-bottom: 5px;
 }
