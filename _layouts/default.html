@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
-<!--   <link rel="stylesheet" href="../assets/css/style.css"> -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-<!--   <link rel="shortcut icon" type="image/x-icon" href="../assets/media/icon.png" /> -->
-  <link rel="shortcut icon" type="image/x-icon" href="{{ site.baseurl }}/assets/media/icon.png" />
+
+  <link rel="stylesheet" href="../assets/css/templateStyle.css">
+  <!--   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/templateStyle.css"> -->
+  <link rel="stylesheet" href="../assets/css/customStyle.css">
+  <!--   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/customStyle.css"> -->
+  <link rel="icon" type="image/png" href="../assets/media/icon.png" />
+  <!--   <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/media/icon.png" /> -->
 
   <title>miq.js</title>
 </head>
@@ -22,32 +24,38 @@
   </header>
 
   <main id="content" class="main-content" role="main">
-    <h2>Atbash</h2>
-    <p>
-        The Atbash cipher is a substitution cipher which has a predefined key. <br />
-        The key being a reversed version of the alphabet.
-    </p>
-    <p style="border-top:1px solid lightgrey; padding-top: 10px; margin-bottom: 0px; font-family: monospace;" id="alphabet_paragraph">
+    <span>
+      <h2>Atbash</h2>
+      <p>
+        The Atbash cipher is a substitution cipher which has a predefined key, which is a reversed version of the alphabet. 
+        The message is encrypted by replacing each letter with the letter in the corresponding position of the reversed alphabet.
+      </p>
+      <p class="atbash-top" id="atbash_alpha">
         ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    </p>
-    <p style="border-bottom:1px solid lightgrey; padding-bottom: 10px; margin-bottom: 25px; margin-top: 0px; font-family: monospace;" id="alphabet_paragraph_reversed">
+      </p>
+      <p class="atbash-bottom" id="atbash_alpha_reversed">
         ZYXWVUTSRQPONMLKJIHGFEDCBA
-    </p>
-    <div style="margin-bottom: 20px">
-      <span style="margin-right: 20px">Message</span>
-      <input id="atbash_message" />
-      <button type="button" onclick="encryptMessage('atbash')">Encrypt</button>
-    </div>
+      </p>
+      <div class="message-container">
+        <textarea id="atbash_message" class="message" placeholder="Enter message to encrypt..."></textarea>
+        <textarea id="atbash_message_encrypted" class="message-encrypted" placeholder="Encrypted message..." readonly></textarea>
+        <div>
+            <button type="button" onclick="encryptMessage('atbash')">Encrypt</button>
+        </div>
+      </div>
+    </span>
 
     <footer class="site-footer">
-      <span class="site-footer-owner"><a href="https://github.com/MattG-ZA/miq.js">miq.js</a> is maintained by <a href="https://github.com/MattG-ZA">Matthew Gleed</a>.</span>
+      <span class="site-footer-owner">
+        <a href="https://github.com/MattG-ZA/miq.js">miq.js</a> is maintained by <a href="https://github.com/MattG-ZA">Matthew Gleed</a>.
+      </span>
     </footer>
   </main>
 </body>
 
-<script src="{{ site.baseurl }}/assets/js/miq.js"></script>
-<script src="{{ site.baseurl }}/assets/js/app.js"></script>
-<!-- <script src="../assets/js/miq.js"></script>
-<script src="../assets/js/app.js"></script> -->
+<!-- <script src="{{ site.baseurl }}/assets/js/miq.js"></script>
+<script src="{{ site.baseurl }}/assets/js/app.js"></script> -->
+<script src="../assets/js/miq.js"></script>
+<script src="../assets/js/app.js"></script>
 
 </html>

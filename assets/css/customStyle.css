@@ -1,0 +1,28 @@
+div.message-container{
+    margin-bottom: 20px;
+}
+textarea.message{
+    min-width: 49%;
+    resize: none;
+}
+textarea.message-encrypted{
+    min-width: 49%;
+    resize: none;
+    float: right;
+}
+p.atbash-top{
+    border-top: 1px solid lightgrey; 
+    padding-top: 10px; 
+    margin-bottom: 0px; 
+    font-family: monospace;
+    text-align: center;
+}
+p.atbash-bottom{
+    border-bottom: 1px solid lightgrey; 
+    padding-bottom: 10px; 
+    margin-bottom: 25px; 
+    margin-top: 0px; 
+    font-family: monospace;
+    text-align: center;
+    margin-bottom: 17px;
+}

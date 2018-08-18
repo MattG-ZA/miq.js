@@ -1,6 +1,6 @@
 const m = miq();
 
-let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 const encryptMessage = (cipher) => {
     let encryptedMessage = '';
@@ -10,10 +10,10 @@ const encryptMessage = (cipher) => {
             const message = document.getElementById('atbash_message').value;
 
             encryptedMessage = m.atbash(message);
-            document.getElementById('atbash_message').value = encryptedMessage;
+            document.getElementById('atbash_message_encrypted').value = encryptedMessage;
             
-            document.getElementById('alphabet_paragraph').innerHTML = boldCharacters(message, alphabet);
-            document.getElementById('alphabet_paragraph_reversed').innerHTML = boldCharacters(encryptedMessage, alphabet.split('').reverse().join(''));
+            document.getElementById('atbash_alpha').innerHTML = boldCharacters(message, alphabet);
+            document.getElementById('atbash_alpha_reversed').innerHTML = boldCharacters(encryptedMessage, alphabet.split('').reverse().join(''));
 
             break;
         default:
@@ -21,6 +21,7 @@ const encryptMessage = (cipher) => {
     }
 };
 
+// Utility Functions
 const boldCharacters = (message, alphabet) => {
     let boldAlphabet = '';
 
