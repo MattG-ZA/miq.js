@@ -7,12 +7,12 @@
   <meta name="theme-color" content="#157878">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!--   <link rel="stylesheet" href="../assets/css/templateStyle.css"> -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/templateStyle.css">
-<!--   <link rel="stylesheet" href="../assets/css/customStyle.css"> -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/customStyle.css">
-<!--   <link rel="icon" type="image/png" href="../assets/media/icon.png" /> -->
-  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/media/icon.png" />
+  <link rel="stylesheet" href="../assets/css/templateStyle.css">
+<!--   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/templateStyle.css"> -->
+  <link rel="stylesheet" href="../assets/css/customStyle.css">
+<!--   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/customStyle.css"> -->
+  <link rel="icon" type="image/png" href="../assets/media/icon.png" />
+<!--   <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/media/icon.png" /> -->
 
   <title>miq.js</title>
 </head>
@@ -25,15 +25,54 @@
 
   <main id="content" class="main-content" role="main">
     <span>
+      <h2>Affine</h2>
+      <p>
+          The 'key' for the Affine cipher consists of 2 numbers, we'll call them 'a' and 'b'. <br/>
+          'a' should be relatively prime to the length of the alphabet (i.e. they should have no factors in common).
+          'b' should be a value between 0 and 25 (i.e. the length of the alphabet, starting at 0). <br/><br/>
+          When encrypting, all letters of the alphabet are first converted to numbers ('a'=0, 'b'=1, ..., 'z'=25).
+          Example: let the key be a = 5 and b = 7. 
+          Then take each letter of the message, convert it to its relevant number (x), and plug it into the equation: <br/><br/>
+          (5 * x + 7)(mod 26). <br/><br/>
+          The result of this is the position of the encrypted letter in the alphabet.
+      </p>
+      <p id="affine_alpha" class="alpha-top">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      </p>
+      <span style="display: flex; justify-content: space-between; border-bottom: 1px solid lightgrey; padding-bottom: 10px; margin-bottom: 17px;">
+        <select id="select_letter" style="width: 10%; text-align: center; border: 1px solid #1e6bb8;" onchange="updateAffineExample()"></select>
+        <span id="affine_equation">(a * x + b)(mod 26) = y</span>
+        <input id="affine_answer" style="width: 10%; text-align: center; border: 1px solid #ef4e7b;" />
+      </span>
+      <span class="legend-container">
+        <span class="message-legend"></span>
+        <span class="message-encrypted-legend"></span>
+      </span>
+      <div class="message-container">
+        <textarea id="affine_message" class="message" placeholder="Enter message to encrypt..."></textarea>
+        <textarea id="affine_message_encrypted" class="message-encrypted" placeholder="Encrypted message..." readonly></textarea>
+      </div>
+      <div class="affine-button-container">
+        <button type="button" onclick="encryptMessage('affine')">Encrypt</button>
+        <span class="affine-inputs-container">
+          <input id="affine_num1_input" class="affine-num1-input" placeholder="a" />
+          <input id="affine_num2_input" class="affine-num2-input" placeholder="b"/>
+        </span>
+      </div>
+    </span>
+    <div class="divider">
+      <hr />
+    </div>
+    <span>
       <h2>Atbash</h2>
       <p>
         The Atbash cipher is a substitution cipher which has a predefined key, which is a reversed version of the alphabet. 
         The message is encrypted by replacing each letter with the letter in the corresponding position of the reversed alphabet.
       </p>
-      <p class="atbash-top" id="atbash_alpha">
+      <p id="atbash_alpha" class="alpha-top">
         ABCDEFGHIJKLMNOPQRSTUVWXYZ
       </p>
-      <p class="atbash-bottom" id="atbash_alpha_reversed">
+      <p id="atbash_alpha_reversed" class="alpha-bottom">
         ZYXWVUTSRQPONMLKJIHGFEDCBA
       </p>
       <span class="legend-container">
@@ -55,9 +94,9 @@
   </main>
 </body>
 
-<script src="{{ site.baseurl }}/assets/js/miq.js"></script>
-<script src="{{ site.baseurl }}/assets/js/app.js"></script>
-<!-- <script src="../assets/js/miq.js"></script>
-<script src="../assets/js/app.js"></script> -->
+<!-- <script src="{{ site.baseurl }}/assets/js/miq.js"></script>
+<script src="{{ site.baseurl }}/assets/js/app.js"></script> -->
+<script src="../assets/js/miq.js"></script>
+<script src="../assets/js/app.js"></script>
 
 </html>
