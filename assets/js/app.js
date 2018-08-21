@@ -16,28 +16,30 @@ const encryptMessage = (cipher) => {
             encryptedMessage = m.affine(message, num1, num2);
             document.getElementById('affine_message_encrypted').value = encryptedMessage;
 
-            // Populate letter selector
-            let select = document.getElementById("select_letter");
-            let options = message.split('');
+            if (encryptedMessage !== 'Error: Invalid number parameters.') {
+                // Populate letter selector
+                let select = document.getElementById("select_letter");
+                let options = message.split('');
 
-            // Clear any previous options
-            for(let i = select.options.length - 1; i >= 0; i--) {
-                select.remove(i);
-            }
-
-            // Add new options
-            for(let i = 0; i < options.length; i++) {
-                if (alphabet.includes(options[i].toUpperCase())) {
-                    let opt = options[i];
-                    let el = document.createElement("option");
-    
-                    el.textContent = opt.toUpperCase();
-                    el.value = opt;
-                    select.appendChild(el);
+                // Clear any previous options
+                for(let i = select.options.length - 1; i >= 0; i--) {
+                    select.remove(i);
                 }
-            }
+
+                // Add new options
+                for(let i = 0; i < options.length; i++) {
+                    if (alphabet.includes(options[i].toUpperCase())) {
+                        let opt = options[i];
+                        let el = document.createElement("option");
+    
+                        el.textContent = opt.toUpperCase();
+                        el.value = opt;
+                        select.appendChild(el);
+                    }
+                }
             
-            updateAffineExample();
+                updateAffineExample();
+            }
 
             break;
         case 'atbash':

@@ -39,10 +39,10 @@
       <p id="affine_alpha" class="alpha-top">
         ABCDEFGHIJKLMNOPQRSTUVWXYZ
       </p>
-      <span style="display: flex; justify-content: space-between; border-bottom: 1px solid lightgrey; padding-bottom: 10px; margin-bottom: 17px;">
-        <select id="select_letter" style="width: 10%; text-align: center; border: 1px solid #1e6bb8;" onchange="updateAffineExample()"></select>
+      <span class="affine-example-container">
+        <select id="select_letter" class="affine-letter-selector" onchange="updateAffineExample()"></select>
         <span id="affine_equation">(a * x + b)(mod 26) = y</span>
-        <input id="affine_answer" style="width: 10%; text-align: center; border: 1px solid #ef4e7b;" />
+        <input id="affine_answer" class="affine-example-input" />
       </span>
       <span class="legend-container">
         <span class="message-legend"></span>
@@ -53,7 +53,7 @@
         <textarea id="affine_message_encrypted" class="message-encrypted" placeholder="Encrypted message..." readonly></textarea>
       </div>
       <div class="affine-button-container">
-        <button type="button" onclick="encryptMessage('affine')">Encrypt</button>
+        <button type="button" class="affine-button" onclick="encryptMessage('affine')">Encrypt</button>
         <span class="affine-inputs-container">
           <input id="affine_num1_input" class="affine-num1-input" placeholder="a" />
           <input id="affine_num2_input" class="affine-num2-input" placeholder="b"/>
