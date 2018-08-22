@@ -1,5 +1,5 @@
-button.affine-button{
-    width: 20%;
+button.encrypt-button{
+    min-width: 85px;
 }
 div.message-container{
     margin-bottom: 5px;
